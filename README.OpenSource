@@ -1,0 +1,11 @@
+[
+	{
+        "Name": "xml4cj",
+        "License": "MIT License",
+        "License File": "LICENSE",
+        "Version Number": "v2.9.14",
+        "Owner" : "Daniel Veillard"
+        "Upstream URL": "https://github.com/GNOME/libxml2",
+        "Description": "libxml2 is an XML toolkit implemented in C,"
+    }
+]
