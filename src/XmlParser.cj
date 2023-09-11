@@ -36,6 +36,9 @@ public class XmlParser {
 
 
     public func parse(str: String): Option<XmlElement> {
+        if (!str.contains('<')) {
+            throw XmlException("XML txt syntax error.")
+        }
         if (str.contains('\0')) {
             throw XmlException("XML txt cannot contain null character.")
         }
@@ -236,7 +239,7 @@ public class XmlElement {
         xmlStr.append('>')
         xmlStr.append(e.eleContent)
         if (e.childrenNum > 0) {
-
+            xmlStr.append('\n')
             if (!e.eleContent.isEmpty()) {
                 xmlStr.append('\n')
             }
@@ -273,8 +276,10 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
         return arrayElement
     }
     var node_names = getxmlNode_name(childnode)
-    var content = getxmlNode_content(xmlDocPtr,childnode)
-    arrayElement.append(XmlElement(node_names, content, xmlDocPtr, childnode))
+    if (!node_names.isEmpty()) {
+        var content = getxmlNode_content(xmlDocPtr,childnode)
+        arrayElement.append(XmlElement(node_names, content, xmlDocPtr, childnode))
+    }
 
     while(true) {
         var nextnode = getnextNode(childnode)
@@ -293,6 +298,7 @@ func checkXmlAttribute(xmlNodePtr: Int64): ArrayList<XmlAttr> {
     var arrayAttr: ArrayList<XmlAttr> = ArrayList<XmlAttr>()
     var childpro = getChildrenProps(xmlNodePtr)
     if(parserAttrPtr_isNull(childpro)){
+        AttrPtr_free(childpro)
         return arrayAttr
     }
     var Attrnames = getPropattribute_name(childpro)

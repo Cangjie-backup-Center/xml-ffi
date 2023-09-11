@@ -29,7 +29,7 @@ public class XmlBOmTest01 {
                 elements = root
             case None => println("XML Parse error.")
         }
-        @Assert(elements.toXmlString().size, 392)
+        @Assert(elements.toXmlString().size, 399)
     }
 
     @TestCase
@@ -43,7 +43,7 @@ public class XmlBOmTest01 {
                 elements = root
             case None => println("XML Parse error.")
         }
-        @Assert(elements.toXmlString().size, 78)
+        @Assert(elements.toXmlString().size, 79)
     }
 }
 
