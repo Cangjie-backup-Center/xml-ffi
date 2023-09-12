@@ -28,7 +28,7 @@ class XmlParser
     /**
     * 解析字符串类型的 XML 文本
     *
-    * @param text - 传入的XML文本
+    * @param text - 传入的XML文本,文本节点名称不支持'#'、'？'
     *
     * @return - DOM模式下解析成功则返回 Option<XmlElement>.Some(element),失败则返回 Option<XmlElement>.None
     */
@@ -203,7 +203,7 @@ class XmlParser
     /**
     * 解析字符串类型的 XML 文本
     *
-    * @param text - 传入的XML文本
+    * @param text - 传入的XML文本，文本内容不支持'&'
     *
     * @return - SAX模式下返回 Option<XmlElement>.None
     */
