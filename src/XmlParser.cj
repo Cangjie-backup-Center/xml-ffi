@@ -287,8 +287,10 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
              break
         }
         var nextnode_names = getxmlNode_name(nextnode)
-        var nextcontent = getxmlNode_content(xmlDocPtr,nextnode)
-        arrayElement.append(XmlElement(nextnode_names, nextcontent, xmlDocPtr, nextnode))
+        if (!nextnode_names.isEmpty()) {
+            var nextcontent = getxmlNode_content(xmlDocPtr,nextnode)
+            arrayElement.append(XmlElement(nextnode_names, nextcontent, xmlDocPtr, nextnode))
+        }
         childnode = nextnode
     }
     return arrayElement
@@ -440,5 +442,5 @@ func end_ele_callback(ud: CPointer<Unit>, name: CString): Unit {
 
 @C
 func characters_callback(ud: CPointer<Unit>, name: CString, len: UInt32): Unit {
-    SAXArray[0].characters(name.toString().substring(0,Int64(len)))
+    SAXArray[0].characters((name.toString()).substring(0,Int64(len)))
 }
