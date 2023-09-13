@@ -442,5 +442,7 @@ func end_ele_callback(ud: CPointer<Unit>, name: CString): Unit {
 
 @C
 func characters_callback(ud: CPointer<Unit>, name: CString, len: UInt32): Unit {
-    SAXArray[0].characters((name.toString()).substring(0,Int64(len)))
+    let src = name.toString().toUtf8Array()
+    let sc = String.fromUtf8(src.slice(0,Int64(len)))
+    SAXArray[0].characters(sc)
 }
