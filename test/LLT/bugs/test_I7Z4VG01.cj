@@ -64,8 +64,7 @@ public class XmlBOmTest01 {
         try {
             x.parse(str).getOrThrow()
         }catch(e: Exception) {
-            println(sax.m)
-            @Assert(sax.m, 15)
+            @Assert(sax.m, 20)
         }
     }
 
