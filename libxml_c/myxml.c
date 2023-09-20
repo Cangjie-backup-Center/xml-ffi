@@ -1,5 +1,7 @@
-
-
+/*
+ * Copyright (c) Huawei Technologies co.,Ltd.2022-2023. All rights resvered.
+ * Description: xml4cj stdio.ffi.c for Cangjie API
+ */
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
@@ -32,7 +34,7 @@ char *query_xmlNode_content(const long ptr, const long ptr1)
     xmlNodePtr cur;
     doc = (xmlDocPtr) ptr;
     cur = (xmlNodePtr) ptr1;
-    xmlChar* key = xmlNodeListGetString(doc, cur -> xmlChildrenNode, 1);
+    xmlChar* key = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
     if (key == NULL) {
         return "";
     }
@@ -41,8 +43,8 @@ char *query_xmlNode_content(const long ptr, const long ptr1)
 
 long query_DocPtr(const char *file_name)
 {
-    xmlDocPtr doc;  
-    doc = xmlParseMemory(file_name, strlen(file_name));  
+    xmlDocPtr doc;
+    doc = xmlParseMemory(file_name, strlen(file_name));
     return (long)(doc);
 }
 
@@ -59,7 +61,7 @@ int xmlNodePtr_isNull(const long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
-    if (cur == NULL){
+    if (cur == NULL) {
         return 1;
     }
     return 0;
@@ -69,7 +71,7 @@ int xmlDocPtr_isNull(const long ptr)
 {
     xmlDocPtr doc;
     doc = (xmlDocPtr) ptr;
-    if (doc == NULL){
+    if (doc == NULL) {
         return 1;
     }
     return 0;
@@ -79,7 +81,7 @@ int xmlAttrPtr_isNull(const long ptr)
 {
     xmlAttrPtr prop;
     prop = (xmlAttrPtr) ptr;
-    if (prop == NULL){
+    if (prop == NULL) {
         return 1;
     }
     return 0;
@@ -122,10 +124,9 @@ void xmlAttrPtrList_free(const long ptr)
 
 long query_ChildrenNodes(const long ptr)
 {
-    
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
-    cur = cur -> xmlChildrenNode; 
+    cur = cur -> xmlChildrenNode;
     return (long)(cur);
 }
 
@@ -173,17 +174,15 @@ void SAX_HandlesCreate(startDocumentSAXFunc sd, endDocumentSAXFunc ed, startElem
     charactersSAXFunc charsse, const char *file_name)
 {
     xmlSAXHandlerPtr handler = calloc(5, sizeof(xmlSAXHandler));
+    if (handler == NULL) {
+        return;
+    }
     handler -> startDocument = sd;
     handler -> endDocument = ed;
     handler -> startElement = se;
     handler -> endElement = ee;
     handler -> characters = charsse;
-    xmlSAXUserParseMemory(
-        handler,
-        NULL,
-        file_name,
-        strlen(file_name)
-    );
+    xmlSAXUserParseMemory(handler, NULL, file_name, strlen(file_name));
     xmlCleanupParser();
 }
 
