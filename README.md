@@ -61,27 +61,62 @@
 
 ### 编译
 
-1. 本项目编译运行方式
+前提：参考 https://github.com/GNOME/libxml2 官网安装 `libxml2`，版本为 `V2.9.14`。
 
--  引入 testJekins 包
+#### libxml2 编译
 
+1. linux 编译
+
+   ```shell
+   var=`awk '/set_target_properties.*/{print NR;exit;}' CMakeLists.txt` && sed -i ''"$var"',+10{/VERSION/d}' CMakeLists.txt
+   cmake ./ -DCMAKE_BUILD_TYPE=Release
+   make
+   ```
+
+2. winows 编译
+
+   下载msys2和mingw64
+
+   msys2：https://github.com/msys2/msys2-installer/releases/download/2023-03-18/msys2-x86_64-20230318.exe
+
+   mingw64：https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-msvcrt-rt_v10-rev2.7z
+
+   将mingw64解压到msys2的根目录
+
+   下载cmake：https://github.com/Kitware/CMake/releases/download/v3.26.3/cmake-3.26.3-windows-x86_64.zip
+
+   将cmake解压到D盘
+
+   用mingw64进入libxml2目录，执行下面语句
+
+    ```shell
+    pacman -S liblzma-devel zlib-devel
+    "D:\cmake-3.26.3-windows-x86_64\bin\cmake" ./ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+    make
     ```
-    git clone https://gitee.com/HW-PLLab/testJekins
-    ```
 
-    将 src 下 ci_test 放入 xml4cj 根目录下,执行：
+#### xml4cj编译
 
-    ```
-    cjpm clean
-    cjpm update
-    python3 ci_test/main.py build    ---> 编译
-    python3 ci_test/main.py test     ---> 执行 test/LLT 用例
-    ```
-    test/LLT 用例书写参考：https://gitee.com/HW-PLLab/cangjie-library-pages/wikis 的门禁测试脚本使用方式
 
-- 重复本项目编译运行方式的第二步
+1. linux 编译
 
-### Xml DOM 解析模式功能示例
+   将上面生成文件 `libxml2.so`，放入根目录的 `lib` 文件夹下，之后执行
+
+   ```
+   ./build_linux.sh
+   ```
+
+2. windows 编译
+
+   将上面生成文件 `libxml2.dll`，放入根目录的 `lib` 文件夹下，之后执行
+
+   ```
+   build_windows.bat
+   ```
+
+### 功能示例
+
+#### Xml DOM 解析模式功能示例
 
 ```cangjie
 
@@ -105,7 +140,7 @@ main() {
 myxml
 ```
 
-### Xml SAX 解析模式功能示例
+#### Xml SAX 解析模式功能示例
 
 ```cangjie
 
