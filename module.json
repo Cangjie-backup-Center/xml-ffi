@@ -17,6 +17,6 @@
 		}
 	},
 	"output_type": "dynamic",
-	"command_option": "-g"
+	"command_option": "-O2"
   }
   
