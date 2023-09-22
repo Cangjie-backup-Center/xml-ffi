@@ -1,6 +1,9 @@
 /*
- * Copyright (c) Huawei Technologies co.,Ltd.2022-2023. All rights resvered.
- * Description: xml4cj stdio.ffi.c for Cangjie API
+ * Copyright (c) Huawei Technologies Co., Ltd. 2023-2023. All rights reserved.
+ * Description: XML for Cangjie API
+ * Author: cwl1097228
+ * Create: 2023-09-1
+ * Notes: 2023-09-1 Create
  */
 #include <stdlib.h>
 #include <limits.h>
