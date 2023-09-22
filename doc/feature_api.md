@@ -156,7 +156,7 @@ class XmlException
 #### 1.2 示例
 
 ```cangjie
-from libxml4cj import libxml4cj.*
+from xml4cj import xml4cj.*
 
 main() {
     let x: XmlParser = XmlParser()
@@ -260,7 +260,8 @@ interface SaxHandler
 #### 2.2 示例
 
 ```cangjie
-from libxml4cj import libxml4cj.*
+from xml4cj import xml4cj.*
+from std import collection.*
 
 let latestMovie = """
 <collection shelf="New Arrivals">
