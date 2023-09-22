@@ -1189,41 +1189,41 @@ XMLPUBFUN xmlDocPtr XMLCALL
 XMLPUBFUN char *
           print_element_names (xmlNode * a_node);
 XMLPUBFUN char *
-          query_xmlNode_name (const long ptr);
+          query_xmlNode_name (const long long ptr);
 XMLPUBFUN char *
-          query_xmlNode_content (const long ptr, const long ptr1);
-XMLPUBFUN long
+          query_xmlNode_content (const long long ptr, const long long ptr1);
+XMLPUBFUN long long
           query_DocPtr (const char *file_name);
-XMLPUBFUN long
-          query_Root_NodePtr (const long ptr);
+XMLPUBFUN long long
+          query_Root_NodePtr (const long long ptr);
 XMLPUBFUN int
-          xmlNodePtr_isNull (const long ptr);
+          xmlNodePtr_isNull (const long long ptr);
 XMLPUBFUN int
-          xmlDocPtr_isNull (const long ptr);
+          xmlDocPtr_isNull (const long long ptr);
 XMLPUBFUN int
-          xmlAttrPtr_isNull (const long ptr);
+          xmlAttrPtr_isNull (const long long ptr);
 XMLPUBFUN void
-          xmlDocPtr_free (const long ptr);
+          xmlDocPtr_free (const long long ptr);
 XMLPUBFUN void
-          xmlNodePtr_free (const long ptr);
+          xmlNodePtr_free (const long long ptr);
 XMLPUBFUN void
-          xmlNodePtrList_free (const long ptr);
+          xmlNodePtrList_free (const long long ptr);
 XMLPUBFUN void
-          xmlAttrPtr_free (const long ptr);
+          xmlAttrPtr_free (const long long ptr);
 XMLPUBFUN void
-          xmlAttrPtrList_free (const long ptr);
-XMLPUBFUN long
-          query_ChildrenNodes (const long ptr);
-XMLPUBFUN long
-          query_nextNode (const long ptr);
-XMLPUBFUN long
-          query_ChildrenProps (const long ptr);
-XMLPUBFUN long
-          query_nextProp (const long ptr);
+          xmlAttrPtrList_free (const long long ptr);
+XMLPUBFUN long long
+          query_ChildrenNodes (const long long ptr);
+XMLPUBFUN long long
+          query_nextNode (const long long ptr);
+XMLPUBFUN long long
+          query_ChildrenProps (const long long ptr);
+XMLPUBFUN long long
+          query_nextProp (const long long ptr);
 XMLPUBFUN char *
-          query_Propattribute_name (const long ptr);
+          query_Propattribute_name (const long long ptr);
 XMLPUBFUN char *
-          query_Propattribute_contxt (const long ptr, const long ptr1);
+          query_Propattribute_contxt (const long long ptr, const long long ptr1);
 XMLPUBFUN void
           SAX_HandlesCreate(startDocumentSAXFunc sd, endDocumentSAXFunc ed, startElementSAXFunc se, endElementSAXFunc ee,
               charactersSAXFunc charsse, const char *file_name);
