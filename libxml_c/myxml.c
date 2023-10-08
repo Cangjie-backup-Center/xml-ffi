@@ -24,14 +24,14 @@ char *print_element_names(xmlNode *a_node)
     }
 }
 
-char *query_xmlNode_name(const long ptr)
+char *query_xmlNode_name(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     return print_element_names(cur);
 }
 
-char *query_xmlNode_content(const long ptr, const long ptr1)
+char *query_xmlNode_content(const long long ptr, const long long ptr1)
 {
     xmlDocPtr doc;
     xmlNodePtr cur;
@@ -44,23 +44,23 @@ char *query_xmlNode_content(const long ptr, const long ptr1)
     return key;
 }
 
-long query_DocPtr(const char *file_name)
+long long query_DocPtr(const char *file_name)
 {
     xmlDocPtr doc;
     doc = xmlParseMemory(file_name, strlen(file_name));
-    return (long)(doc);
+    return (long long)(doc);
 }
 
-long query_Root_NodePtr(const long ptr)
+long long query_Root_NodePtr(const long long ptr)
 {
     xmlDocPtr doc;
     xmlNodePtr cur;
     doc = (xmlDocPtr) ptr;
     cur = xmlDocGetRootElement(doc);
-    return (long)(cur);
+    return (long long)(cur);
 }
 
-int xmlNodePtr_isNull(const long ptr)
+int xmlNodePtr_isNull(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
@@ -70,7 +70,7 @@ int xmlNodePtr_isNull(const long ptr)
     return 0;
 }
 
-int xmlDocPtr_isNull(const long ptr)
+int xmlDocPtr_isNull(const long long ptr)
 {
     xmlDocPtr doc;
     doc = (xmlDocPtr) ptr;
@@ -80,7 +80,7 @@ int xmlDocPtr_isNull(const long ptr)
     return 0;
 }
 
-int xmlAttrPtr_isNull(const long ptr)
+int xmlAttrPtr_isNull(const long long ptr)
 {
     xmlAttrPtr prop;
     prop = (xmlAttrPtr) ptr;
@@ -90,81 +90,81 @@ int xmlAttrPtr_isNull(const long ptr)
     return 0;
 }
 
-void xmlDocPtr_free(const long ptr)
+void xmlDocPtr_free(const long long ptr)
 {
     xmlDocPtr doc;
     doc = (xmlDocPtr) ptr;
     xmlFreeDoc(doc);
 }
 
-void xmlNodePtr_free(const long ptr)
+void xmlNodePtr_free(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     xmlFreeNode(cur);
 }
 
-void xmlNodePtrList_free(const long ptr)
+void xmlNodePtrList_free(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     xmlFreeNodeList(cur);
 }
 
-void xmlAttrPtr_free(const long ptr)
+void xmlAttrPtr_free(const long long ptr)
 {
     xmlAttrPtr prop;
     prop = (xmlAttrPtr) ptr;
     xmlFreeProp(prop);
 }
 
-void xmlAttrPtrList_free(const long ptr)
+void xmlAttrPtrList_free(const long long ptr)
 {
     xmlAttrPtr prop;
     prop = (xmlAttrPtr) ptr;
     xmlFreePropList(prop);
 }
 
-long query_ChildrenNodes(const long ptr)
+long long query_ChildrenNodes(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     cur = cur -> xmlChildrenNode;
-    return (long)(cur);
+    return (long long)(cur);
 }
 
-long query_nextNode(const long ptr)
+long long query_nextNode(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     cur = cur -> next;
-    return (long)(cur);
+    return (long long)(cur);
 }
 
-long query_ChildrenProps(const long ptr)
+long long query_ChildrenProps(const long long ptr)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     xmlAttrPtr attribute = cur -> properties;
-    return (long)(attribute);
+    return (long long)(attribute);
 }
 
-long query_nextProp(const long ptr)
+long long query_nextProp(const long long ptr)
 {
     xmlAttrPtr attribute;
     attribute = (xmlAttrPtr) ptr;
     attribute = attribute -> next;
-    return (long)(attribute);
+    return (long long)(attribute);
 }
 
-char *query_Propattribute_name(const long ptr)
+char *query_Propattribute_name(const long long ptr)
 {
     xmlAttrPtr attribute;
     attribute = (xmlAttrPtr) ptr;
     return attribute -> name;
 }
 
-char *query_Propattribute_contxt(const long ptr, const long ptr1)
+char *query_Propattribute_contxt(const long long ptr, const long long ptr1)
 {
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
