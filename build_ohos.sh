@@ -21,10 +21,10 @@ if [ -f "Makefile" ];then
     make clean
 fi
 
-# "/usr1/ohos/llvm/bin/"为ohos编译路径，
-# "/usr1/ohos/llvm/include/aarch64-linux-ohos"为ohos头文件路径，请自行修改
-./configure --cc="/usr1/ohos/llvm/bin/clang" --cross-prefix="/usr1/ohos/llvm/bin/llvm-" \
---target=aarch64-linux-ohos --cflags="-I/usr1/ohos/llvm/include/aarch64-linux-ohos"
+# "/root/usr1/ohos/native/llvm/bin/" 为 ohos 编译路径，
+# "/usr1/ohos/native/sysroot" 为 ohos 为 sysroot 路径，请自行修改
+./configure --cc="/root/usr1/ohos/native/llvm/bin/clang" --cross-prefix="/root/usr1/ohos/native/llvm/bin/llvm-" \
+--target=aarch64-linux-ohos --cflags="--sysroot=/usr1/ohos/native/sysroot"
 make
 
 # xml4cj
