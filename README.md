@@ -35,23 +35,30 @@
 ```shell
 .
 ├── README.md
-├── doc
-│   ├── assets
-│   └── feature_api.md
-├── lib
+├── doc 
+├── libxml_c
 ├── src
 │   ├── native.cj  
 │   └── XmlParser.cj    
 │       
-└── test
-    ├── HLT
-    ├── LLT
-    └── UT
+├── test
+│    ├── DOC
+│    ├── FUZZ
+│    ├── HLT
+│    ├── LLT
+│    └── UT
+├── CHANGELOG.md
+├── gitee_gate.cfg
+├── LICENSE.txt
+├── module.json
+├── README.md
+├── README.OpenSource
 ```
 
 - `doc` 文档目录，用于存API接口文档
+- `libxml_c` 需要自行编译的c文件
 - `src` 是库源码目录
-- `test` 存放 HLT 测试用例、LLT 自测用例
+- `test` 存放 HLT 测试用例、LLT 自测用例、DOC 示例用例、FUZZ用例、UT 单元测试用例
 
 ### 接口说明
 
@@ -67,11 +74,32 @@
 
 1. linux 编译
 
+   进入 libxml2 根目录，执行下面语句。
+
    ```shell
    var=`awk '/set_target_properties.*/{print NR;exit;}' CMakeLists.txt` && sed -i ''"$var"',+10{/VERSION/d}' CMakeLists.txt
-   cmake ./ -DCMAKE_BUILD_TYPE=Release
-   make
    ```
+
+   1.1 x86-64
+
+      ```shell
+      cmake ./ -DCMAKE_BUILD_TYPE=Release
+      make
+      ```
+
+   1.2 aarch64
+
+      ```shell
+      cmake ./ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
+      make
+      ```
+
+   1.3. ohos
+
+      ```shell
+      cmake ./ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr1/ohos/native/llvm/bin/clang -DCMAKE_C_FLAGS="--sysroot=/usr1/ohos/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSROOT=/usr1/ohos/native/sysroot -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
+      make
+      ```
 
 2. winows 编译
 
@@ -98,7 +126,7 @@
 #### xml4cj编译
 
 
-1. linux 编译
+1. linux x86_64 编译
 
    将上面生成文件 `libxml2.so`，放入根目录的 `lib` 文件夹下，之后执行
 
@@ -112,6 +140,22 @@
 
    ```
    build_windows.bat
+   ```
+
+3. aarch64编译
+
+   将上面生成文件 `libxml2.so`，放入根目录的 `lib` 文件夹下，之后执行
+
+   ```
+   ./build_aarch64.sh
+   ```
+
+4. ohos编译
+
+   将上面生成文件 `libxml2.so`，放入根目录的 `lib` 文件夹下，之后执行
+
+   ```
+   ./build_ohos.sh
    ```
 
 ### 功能示例
