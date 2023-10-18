@@ -1,5 +1,6 @@
 /*
- * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
  */
 
 /**

@@ -29,7 +29,7 @@ class XmlParser
     * 解析字符串类型的 XML 文本
     *
     * @param text - 传入的XML文本,文本节点名称不支持'#'、'？'
-    *
+    * @exception 传入的XML文本,文本节点名称'<'、'\0'，文本长度大于UInt32最大值，抛出异常XmlException
     * @return - DOM模式下解析成功则返回 Option<XmlElement>.Some(element),失败则返回 Option<XmlElement>.None
     */
     public func parse(str: String): Option<XmlElement>
@@ -45,6 +45,7 @@ class XmlAttr
     * 默认无参构造函数,创建新的 XmlAttr 对象
     * 
     * @param name - 属性名称，如果名称为空会抛异常
+    * @exception 传入的name，不能为空，首字母不能是（'-'、'.'、'\u{00B7}'），首字母不能是数字(0-9)，抛出异常XmlException
     * @param content - 属性值
     */
     public init(name: String, content: String)
@@ -77,6 +78,7 @@ class XmlElement
     * 默认无参构造函数,创建新的 XmlElement 对象
     * 
     * @param name - 节点名称，如果名称为空,会抛异常
+    * @exception 传入的name，不能为空，首字母不能是（'-'、'.'、'\u{00B7}'），首字母不能是数字(0-9)，抛出异常XmlException
     * @param content - 节点文本内容
     */
     public init(name: String, content: String)
@@ -146,10 +148,26 @@ class XmlException
     /**
     * 创建XmlElement 对象
     * 
-    * @param message - 异常内容
+    * @param messages - 异常内容
     * 
     */
-    public init(message: String)
+    public init(messages: String)
+
+    /**
+    * 获取异常内容
+    * 
+    * @return 异常内容
+    * 
+    */
+    public func getMessage(): String 
+    
+    /**
+    * 获取异常信息字符串
+    * 
+    * @return 异常信息字符串
+    * 
+    */
+    public func toString(): String 
 
 ```
 

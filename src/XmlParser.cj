@@ -1,5 +1,6 @@
 /*
- * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
  */
 
 /**
@@ -37,13 +38,13 @@ public class XmlParser {
 
     public func parse(str: String): Option<XmlElement> {
         if (!str.contains('<')) {
-            throw XmlException("XML txt syntax error.")
+            throw XmlException("xml txt syntax error.")
         }
         if (str.contains('\0')) {
-            throw XmlException("XML txt cannot contain null character.")
+            throw XmlException("xml txt cannot contain null character.")
         }
         if (str.size > Int64(UInt32.Max)) {
-            throw XmlException("The maximum parsing length is the maximum value of UInt32.")
+            throw XmlException("the maximum parsing length is the maximum value of UInt32.")
         }
         if (str.isEmpty()) {
             return Option<XmlElement>.None
@@ -79,13 +80,13 @@ public class XmlParser {
 
 func checkXmlName(name: String) {
     if (name.isEmpty()) {
-        throw XmlException("XML Name is not well-formed.")
+        throw XmlException("xml name is not well-formed.")
     }
     if (name[0] == '-' || name[0] == '.' || name[0] == '\u{00B7}') {
-        throw XmlException("XML Name is not well-formed.")
+        throw XmlException("xml name is not well-formed.")
     }
     if (name[0] >= '0' && name[0] <= '9') {
-        throw XmlException("XML Name is not well-formed.")
+        throw XmlException("xml name is not well-formed.")
     }
 }
 
@@ -184,7 +185,7 @@ public class XmlElement {
             for (a in attrs) {
                 if (attrNameSet.contains(a.name)) {
                     throw XmlException(
-                        "An attribute name must not appear more than once in the same start-tag or empty-element tag.")
+                        "an attribute name must not appear more than once in the same start-tag or empty-element tag.")
                 }
                 eleAttributes.append(XmlAttr(a.name, a.content))
                 attrNameSet.put(a.name)
@@ -360,13 +361,22 @@ public class XmlAttr <: ToString {
 }
 
 public class XmlException <: Exception {
+    private var messages: String = ""
 
     public init() {
         super()
     }
 
-    public init(message: String) {
-        super(message)
+    public init(messages: String) {
+        super(messages)
+        this.messages = messages
+    }
+
+    public func getMessage(): String {
+        return messages
+    }
+    public override func toString(): String {
+        return "XmlException: ${messages}"
     }
 
 }
@@ -391,9 +401,15 @@ public interface SaxHandler {
 class SimpleSaxHandler <: SaxHandler {
     public func startDocument(): Unit {}
     public func endDocument(): Unit {}
-    public func startElement(name: String, attrs: ArrayList<XmlAttr>): Unit {}
-    public func endElement(name: String): Unit {}
-    public func characters(content: String): Unit {}
+    public func startElement(name: String, attrs: ArrayList<XmlAttr>): Unit {
+        (name, attrs)
+    }
+    public func endElement(name: String): Unit {
+        (name)
+    }
+    public func characters(content: String): Unit {
+        (content)
+    }
 }
 
 func saxGetAttrs(attrs: CPointer<CPointer<UInt8>>): ArrayList<XmlAttr> {
@@ -421,27 +437,31 @@ func saxGetAttrs(attrs: CPointer<CPointer<UInt8>>): ArrayList<XmlAttr> {
 
 @C
 func start_doc_callback(ud: CPointer<Unit>): Unit {
+    (ud)
     SAXArray[0].startDocument()
 }
 
 @C
 func end_doc_callback(ud: CPointer<Unit>): Unit {
+    (ud)
     SAXArray[0].endDocument()
 }
 
 @C
 func start_ele_callback(ud: CPointer<Unit>, name: CString, atts: CPointer<CPointer<UInt8>>): Unit {
+    (ud)
     SAXArray[0].startElement(name.toString(),saxGetAttrs(atts))
 }
 
 @C
 func end_ele_callback(ud: CPointer<Unit>, name: CString): Unit {
-    
+    (ud)
     SAXArray[0].endElement(name.toString())
 }
 
 @C
 func characters_callback(ud: CPointer<Unit>, name: CString, len: UInt32): Unit {
+    (ud)
     let src = name.toString().toUtf8Array()
     let sc = String.fromUtf8(src.slice(0,Int64(len)))
     SAXArray[0].characters(sc)

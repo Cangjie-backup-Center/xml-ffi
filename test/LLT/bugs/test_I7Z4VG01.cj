@@ -50,7 +50,7 @@ public class XmlBOmTest01 {
         """
         try {
             x.parse(str).getOrThrow()
-        }catch(e: Exception) {
+        }catch(e: NoneValueException) {
             println(sax.m)
             @Assert(sax.m, 15)
         }
@@ -63,7 +63,7 @@ public class XmlBOmTest01 {
         var str = ##"<message>st开始ar~! ~@@#%^.......*()--+-.{}【】;;;：“.《》ting</message>"##
         try {
             x.parse(str).getOrThrow()
-        }catch(e: Exception) {
+        }catch(e: NoneValueException) {
             @Assert(sax.m, 20)
         }
     }

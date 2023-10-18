@@ -38,7 +38,7 @@ public class XmlBOmTest01 {
         try {
             x.parse(str)
         }catch (e: XmlException) {
-            @Assert(e.toString(), "Exception: XML txt syntax error.")
+            @Assert(e.toString(), "XmlException: xml txt syntax error.")
         }
     }
 }
