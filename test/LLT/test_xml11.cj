@@ -55,7 +55,7 @@ public class XmlBOmTest01 {
         try {
             XmlElement("","se")
         }catch (e1:XmlException) {
-            @Assert(e1.toString(), "Exception: XML Name is not well-formed.")
+            @Assert(e1.toString(), "XmlException: xml name is not well-formed.")
         }
     }
 }
