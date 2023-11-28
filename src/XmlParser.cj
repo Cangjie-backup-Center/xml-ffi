@@ -37,10 +37,10 @@ public class XmlParser {
 
 
     public func parse(str: String): Option<XmlElement> {
-        if (!str.contains('<')) {
+        if (!str.contains("<")) {
             throw XmlException("xml txt syntax error.")
         }
-        if (str.contains('\0')) {
+        if (str.contains("\0")) {
             throw XmlException("xml txt cannot contain null character.")
         }
         if (str.size > Int64(UInt32.Max)) {
@@ -82,10 +82,10 @@ func checkXmlName(name: String) {
     if (name.isEmpty()) {
         throw XmlException("xml name is not well-formed.")
     }
-    if (name[0] == '-' || name[0] == '.' || name[0] == '\u{00B7}') {
+    if (Char(name[0]) == '-' || Char(name[0]) == '.' || Char(name[0]) == '\u{00B7}') {
         throw XmlException("xml name is not well-formed.")
     }
-    if (name[0] >= '0' && name[0] <= '9') {
+    if (Char(name[0]) >= '0' && Char(name[0]) <= '9') {
         throw XmlException("xml name is not well-formed.")
     }
 }
@@ -264,8 +264,9 @@ public class XmlElement {
     public func toXmlString(): String {
         let tabStop = 4
         var xmlStr = toXmlString(this, tabStop, 0)
-        xmlStr.removeLast()
-        return xmlStr.toString()
+        let buffers = xmlStr.toString()
+        var datas = buffers.lastIndexOf("\n").getOrThrow()
+        return buffers[0..datas]
     }
 
 }
@@ -462,7 +463,7 @@ func end_ele_callback(ud: CPointer<Unit>, name: CString): Unit {
 @C
 func characters_callback(ud: CPointer<Unit>, name: CString, len: UInt32): Unit {
     (ud)
-    let src = name.toString().toUtf8Array()
+    let src = name.toString().toArray()
     let sc = String.fromUtf8(src.slice(0,Int64(len)))
     SAXArray[0].characters(sc)
 }

@@ -11,7 +11,7 @@ public class xml4cjparserTest {
         var xmlparser = XmlParser()
         var str = "cangjie111"
         try {
-            var xmlelement = xmlparser.parse(str).getOrThrow()
+            xmlparser.parse(str).getOrThrow()
         } catch (e: XmlException) {
             @Assert(e.toString(),"XmlException: xml txt syntax error.")
         }

@@ -11,5 +11,6 @@ public class xml4cjparserTest {
         var xmlparser = XmlParser()
         var str = ##"<sode/>"##
         var xmlelement = xmlparser.parse(str).getOrThrow()
+        @Assert(xmlelement.content, "")
     }
 }
