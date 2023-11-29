@@ -19,7 +19,7 @@ public class xml4cjparserTest {
         """
         var a = 0
         try {
-            var xmlelement = xmlparser.parse(str)
+            xmlparser.parse(str)
         } catch (e: XmlException) {
             a = a + 1
         }

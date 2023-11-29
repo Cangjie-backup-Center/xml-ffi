@@ -14,7 +14,7 @@ public class xml4cjparserTest {
 <message>starting</message>
 """
         try {
-            var xmlelement = xmlparser.parse(str).getOrThrow()
+            xmlparser.parse(str).getOrThrow()
         } catch (e: XmlException) {
             @Assert(e.toString(), "XML text syntax error")
         }
