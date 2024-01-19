@@ -10,7 +10,7 @@ public class xml4cjparserTest {
     func testparser_01():Unit{ 
         var str = ##"< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >"##
         var xmlelement = XmlElement(str, str)
-        @Assert(xmlelement.toString(), #"<< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message ></< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>"#)
+        @Assert(xmlelement.toString(), "<< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message ></< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>")
         @Assert(xmlelement.toXmlString(), "<< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message ></< me中文ssa ge> st 开始ar~！~@@# ￥ %······&*（）————+-=·{}【】；’：“，。《》ting </message >>")
     }
 }

@@ -10,7 +10,7 @@ public class xml4cjparserTest {
     func testparser_01(): Unit {
         var str = ##"<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>"##
         var xmlelement = XmlElement(str, str)
-        @Assert(xmlelement.toString(),#"<<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>><message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message></<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>>"#)
-        @Assert(xmlelement.toXmlString(),#"<<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>>"# + #"<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>"# + #"</<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>>"#)
+        @Assert(xmlelement.toString(),##"<<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>><message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message></<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>>"##)
+        @Assert(xmlelement.toXmlString(),##"<<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>><message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message></<message>star~!@#@$%$%^*()_+{}|\":?tin().,';[]=>-g</message>>"##)
     }
 }
