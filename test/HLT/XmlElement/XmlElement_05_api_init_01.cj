@@ -11,7 +11,11 @@ public class xml4cjparserTest {
         var str =
             ##"< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >"##
         var xmlelement = XmlElement(str, str)
-        @Assert(xmlelement.toString(), #"<< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message ></< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>"#)
-        @Assert(xmlelement.toXmlString(), #"<< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message ></< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>"#)
+        let sc = 
+            ##"<< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message ></< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>"##
+        @Assert(xmlelement.toString(),sc)
+        let sc1 = 
+            ##"<< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message ></< me中文ssa ge> st 开始ar~!~@@# ￥ %······&*（）————+-=·{}【】;":“,。《》ting </message >>"##
+        @Assert(xmlelement.toXmlString(), sc1)
     }
 }
