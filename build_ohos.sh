@@ -30,6 +30,6 @@ make
 # xml4cj
 cd  ${lib_path}/
 echo start build xml4cj
-cjpm build -V
-cp ${lib_path}/lib/*.so ${lib_path}/build/xml4cj/
+cjpm build -V --target=aarch64-linux-ohos
+cp ${lib_path}/lib/*.so ${lib_path}/target/aarch64-linux-ohos/release/xml4cj/
 echo end build xml4cj
