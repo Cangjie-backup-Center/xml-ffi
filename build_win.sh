@@ -28,5 +28,5 @@ make
 cd  ${lib_path}/
 echo start build xml4cj
 cjpm build -V
-cp ${lib_path}/lib/*.dll ${lib_path}/build/xml4cj/
+cp ${lib_path}/lib/*.dll ${lib_path}/target/release/xml4cj/
 echo end build xml4cj
