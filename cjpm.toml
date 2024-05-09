@@ -8,8 +8,8 @@
       path = "./lib/"
 
 [package]
-  cjc-version = "0.50.3"
-  compile-option = "-O2"
+  cjc-version = "0.51.4"
+  compile-option = "-O2 -Woff unused"
   description = "xml4cj is XML text processing"
   link-option = ""
   name = "xml4cj"
