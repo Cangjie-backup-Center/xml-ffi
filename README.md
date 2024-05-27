@@ -94,13 +94,6 @@
       make
       ```
 
-   1.3. ohos
-
-      ```shell
-      cmake ./ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr1/ohos/native/llvm/bin/clang -DCMAKE_C_FLAGS="--sysroot=/usr1/ohos/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSROOT=/usr1/ohos/native/sysroot -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
-      make
-      ```
-
 2. winows 编译
 
    下载msys2和mingw64
@@ -120,6 +113,20 @@
     ```shell
     pacman -S liblzma-devel zlib-devel
     "D:\cmake-3.26.3-windows-x86_64\bin\cmake" ./ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+    make
+    ```
+   
+3. ohos 编译
+
+   用mingw64进入libxml2目录，执行下面语句
+    
+   xx/xx/native 为ohos编译工具链目录
+
+    ```shell
+    var=`awk '/set_target_properties.*/{print NR;exit;}' CMakeLists.txt` && sed -i ''"$var"',+10{/VERSION/d}' CMakeLists.txt
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="xx/xx/native/llvm/bin/clang.exe" -DCMAKE_C_FLAGS="--sysroot=xx/xx/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSTEM_NAME=linux -DCMAKE_SYSTEM_PROCESSOR=aarch64  -G "MinGW Makefiles" -DCMAKE_STRIP="xx/xx/native/llvm/bin/llvm-strip.exe" -DCMAKE_MAKE_PROGRAM="xx/msys2/mingw64/bin/make.exe" -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
     make
     ```
 

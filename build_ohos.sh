@@ -1,35 +1,13 @@
 #! /bin/bash
-lib_path=$(cd `dirname $0`; pwd)
-#lib_path=$(pwd)
 
+mkdir -p libxml_c/build
+mkdir -p lib
+cd libxml_c/build
 
-# check libmyxml2.so
-if [ ! -d "${lib_path}/lib/" ];then
-    mkdir ${lib_path}/lib
-    echo "Please copy libxml2.so to the folder ${lib_path}/lib."
-    exit 1
-fi
-
-if [ ! -f "${lib_path}/lib/libxml2.so" ];then
-    echo "Please copy libxml2.so to the folder ${lib_path}/lib."
-    exit 1
-fi
-
-# libmyxml2.so
-cd ${lib_path}/libxml_c
-if [ -f "Makefile" ];then
-    make clean
-fi
-
-# "/root/usr1/ohos/native/llvm/bin/" 为 ohos 编译路径，
-# "/usr1/ohos/native/sysroot" 为 ohos 为 sysroot 路径，请自行修改
-./configure --cc="/root/usr1/ohos/native/llvm/bin/clang" --cross-prefix="/root/usr1/ohos/native/llvm/bin/llvm-" \
---target=aarch64-linux-ohos --cflags="--sysroot=/usr1/ohos/native/sysroot"
+# -DCMAKE_CXX_COMPILER 和 -DCMAKE_CXX_FLAGS 路径自行设置
+cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="E:/532_xml/native/llvm/bin/clang.exe" -DCMAKE_C_FLAGS="--sysroot=E:/532_xml/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSTEM_NAME=linux -DCMAKE_SYSTEM_PROCESSOR=aarch64  -G "MinGW Makefiles" -DCMAKE_STRIP="E:/532_xml/native/llvm/bin/llvm-strip.exe" -DCMAKE_MAKE_PROGRAM="D:/msys64/mingw64/bin/make.exe"
 make
 
-# xml4cj
-cd  ${lib_path}/
-echo start build xml4cj
-cjpm build -V --target=aarch64-linux-ohos
-cp ${lib_path}/lib/*.so ${lib_path}/target/aarch64-linux-ohos/release/xml4cj/
-echo end build xml4cj
+cp libmyxml2.so ../../lib/
+cd ../../
+cjpm build --target aarch64-linux-ohos
