@@ -1,10 +1,10 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from xml4cj import xml4cj.*
-from std import unittest.*
-from std import collection.*
-from std import unittest.testmacro.*
+import xml4cj.*
+import std.unittest.*
+import std.collection.*
+import std.unittest.testmacro.*
 
 main(): Int64 {
     let Xmlbom = XmlBOmTest01()

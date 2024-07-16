@@ -1,11 +1,11 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from xml4cj import xml4cj.*
-from std import collection.*
-from std import unittest.testmacro.*
-from std import collection.*
-from std import math.*
+import xml4cj.*
+import std.collection.*
+import std.unittest.testmacro.*
+import std.collection.*
+import std.math.*
 main(): Int64 {
     let x: XmlParser = XmlParser(MovieHandler())
         let latestMovie = """

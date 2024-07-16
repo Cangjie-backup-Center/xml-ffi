@@ -1,7 +1,7 @@
 [
 	{
         "Name": "libxml2",
-        "License": "MIT License",
+        "License": "Copyright (C) 1998-2012 Daniel Veillard",
         "License File": "LICENSE",
         "Version Number": "v2.9.14",
         "Owner" : "Daniel Veillard"
