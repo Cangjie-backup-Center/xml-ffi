@@ -8,12 +8,11 @@
  */
 package xml4cj
 
-from std import io.*
-from std import fs.*
-from std import os.posix.*
-from std import sync.*
-from std import math.*
-from std import collection.*
+import std.fs.*
+import std.os.posix.*
+import std.sync.*
+import std.math.*
+import std.collection.*
 
 var SAXArray = ArrayList<SaxHandler>()
 public class XmlParser {
@@ -81,10 +80,10 @@ func checkXmlName(name: String) {
     if (name.isEmpty()) {
         throw XmlException("xml name is not well-formed.")
     }
-    if (Char(name[0]) == '-' || Char(name[0]) == '.' || Char(name[0]) == '\u{00B7}') {
+    if (Rune(name[0]) == r'-' || Rune(name[0]) == r'.' || Rune(name[0]) == r'\u{00B7}') {
         throw XmlException("xml name is not well-formed.")
     }
-    if (Char(name[0]) >= '0' && Char(name[0]) <= '9') {
+    if (Rune(name[0]) >= r'0' && Rune(name[0]) <= r'9') {
         throw XmlException("xml name is not well-formed.")
     }
 }
