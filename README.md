@@ -282,6 +282,9 @@ Score: 6.5
 Year: 2024-4
 End Parsing.
 ```
+## 开源协议
+
+本项目基于 [个人：(C) 1998-2012 Daniel Veillard](./LICENSE) ，请自由的享受和参与开源。
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/> 参与贡献
 
