@@ -67,8 +67,6 @@
 
 ### 编译
 
-前提：参考 https://github.com/GNOME/libxml2 官网安装 `libxml2`，版本为 `V2.9.14`。
-
 #### libxml2 编译
 
 1. linux 编译
