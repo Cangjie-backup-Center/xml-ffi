@@ -13,7 +13,6 @@
 ## 介绍
 
 一个标准的 XML 文本处理的工具。    
-参考地址: https://github.com/GNOME/libxml2 版本2.9.14
 
 ### 特性
 
