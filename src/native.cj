@@ -21,13 +21,7 @@ foreign {
 
     func xmlNodePtr_isNull(ptr: Int64): Int32
 
-    func xmlDocPtr_isNull(ptr: Int64): Int32
-
     func xmlAttrPtr_isNull(ptr: Int64): Int32
-
-    func xmlDocPtr_free(ptr: Int64): Unit
-
-    func xmlNodePtr_free(ptr: Int64): Unit
 
     func xmlAttrPtr_free(ptr: Int64): Unit
 
@@ -75,16 +69,6 @@ public func parserNodePtr_isNull(str: Int64): Bool {
     
 }
 
-public func parserDocPtr_isNull(str: Int64): Bool {
-    var ret = unsafe { xmlDocPtr_isNull(str) }
-    if (ret == 1) {
-        return true
-    }else {
-        return false
-    }
-    
-}
-
 public func parserAttrPtr_isNull(str: Int64): Bool {
     var ret = unsafe { xmlAttrPtr_isNull(str) }
     if (ret == 1) {
@@ -94,15 +78,6 @@ public func parserAttrPtr_isNull(str: Int64): Bool {
     }
     
 }
-
-public func DocPtr_free(str: Int64): Unit {
-    unsafe { xmlDocPtr_free(str) }
-}
-
-public func NodePtr_free(str: Int64): Unit {
-    unsafe { xmlNodePtr_free(str) }
-}
-
 
 public func AttrPtr_free(str: Int64): Unit {
     unsafe { xmlAttrPtr_free(str) }

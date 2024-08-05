@@ -70,15 +70,6 @@ int xmlNodePtr_isNull(const long long ptr)
     return 0;
 }
 
-int xmlDocPtr_isNull(const long long ptr)
-{
-    xmlDocPtr doc;
-    doc = (xmlDocPtr) ptr;
-    if (doc == NULL) {
-        return 1;
-    }
-    return 0;
-}
 
 int xmlAttrPtr_isNull(const long long ptr)
 {
@@ -90,27 +81,6 @@ int xmlAttrPtr_isNull(const long long ptr)
     return 0;
 }
 
-void xmlDocPtr_free(const long long ptr)
-{
-    xmlDocPtr doc;
-    doc = (xmlDocPtr) ptr;
-    xmlFreeDoc(doc);
-}
-
-void xmlNodePtr_free(const long long ptr)
-{
-    xmlNodePtr cur;
-    cur = (xmlNodePtr) ptr;
-    xmlFreeNode(cur);
-}
-
-void xmlNodePtrList_free(const long long ptr)
-{
-    xmlNodePtr cur;
-    cur = (xmlNodePtr) ptr;
-    xmlFreeNodeList(cur);
-}
-
 void xmlAttrPtr_free(const long long ptr)
 {
     xmlAttrPtr prop;
@@ -118,12 +88,6 @@ void xmlAttrPtr_free(const long long ptr)
     xmlFreeProp(prop);
 }
 
-void xmlAttrPtrList_free(const long long ptr)
-{
-    xmlAttrPtr prop;
-    prop = (xmlAttrPtr) ptr;
-    xmlFreePropList(prop);
-}
 
 long long query_ChildrenNodes(const long long ptr)
 {

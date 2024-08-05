@@ -21,18 +21,12 @@ public class XmlParser {
     private var isSax = false
     private var sax: SaxHandler = SimpleSaxHandler()
 
-    private var xmlDocPtr: Int64 = 0
-
-    private var xmlNodePtr: Int64 = 0
-
     public init(){}
-
 
     public init(handler: SaxHandler){
         this.isSax = true
         this.sax = handler
     }
-
 
     public func parse(str: String): Option<XmlElement> {
         if (!str.contains("<")) {
@@ -94,10 +88,6 @@ public class XmlElement {
 
     public var eleContent: String
 
-    private var xmlDocPtr: Int64 = 0
-
-    private var xmlNodePtr: Int64 = 0
-
     private var eleIsClosed: Bool
 
     private var eleChildrenElements: ArrayList<XmlElement> = ArrayList<XmlElement>()
@@ -108,15 +98,6 @@ public class XmlElement {
         this(name, content)
         this.eleChildrenElements = checkXmlElement(xmlDocPtr, xmlNodePtr)
         this.eleAttributes = checkXmlAttribute(xmlNodePtr)
-        this.xmlDocPtr = xmlDocPtr
-        this.xmlNodePtr = xmlNodePtr
-    }
-
-    ~init() {
-        unsafe { 
-            DocPtr_free(xmlDocPtr) 
-            NodePtr_free(xmlNodePtr) 
-        }
     }
 
     public init(name: String, content: String){
