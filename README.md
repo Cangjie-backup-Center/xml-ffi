@@ -1,5 +1,5 @@
 <div align="center">
-<h1>xml4cj</h1>
+<h1>xml-ffi</h1>
 </div>
 
 <p align="center">
@@ -126,7 +126,7 @@
     make
     ```
 
-#### xml4cj编译
+#### xml-ffi编译
 
 
 1. linux x86_64 编译
@@ -167,7 +167,7 @@
 
 ```cangjie
 
-import xml4cj.*
+import xml_ffi.*
 
 main() {
     let x: XmlParser = XmlParser()
@@ -191,7 +191,7 @@ myxml
 
 ```cangjie
 
-import xml4cj.*
+import xml_ffi.*
 import std.collection.*
 
 let latestMovie = """

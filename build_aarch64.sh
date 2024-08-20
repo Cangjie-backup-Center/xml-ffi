@@ -28,9 +28,9 @@ else
 fi
 make
 
-# xml4cj
+# xml_ffi
 cd  ${lib_path}/
-echo start build xml4cj
+echo start build xml_ffi
 cjpm build -V
-cp ${lib_path}/lib/*.so ${lib_path}/target/release/xml4cj/
-echo end build xml4cj
+cp ${lib_path}/lib/*.so ${lib_path}/target/release/xml_ffi/
+echo end build xml_ffi

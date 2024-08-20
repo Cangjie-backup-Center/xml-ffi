@@ -1,6 +1,6 @@
-// 3rd_party_lib:xml-ffi/target/release/xml4cj
-//3rd_party_lib_ohos:xml-ffi\target\aarch64-linux-ohos\release\xml4cj
-import xml4cj.*
+// 3rd_party_lib:xml-ffi/target/release/xml_ffi
+//3rd_party_lib_ohos:xml-ffi\target\aarch64-linux-ohos\release\xml_ffi
+import xml_ffi.*
 import std.unittest.*
 import std.collection.*
 

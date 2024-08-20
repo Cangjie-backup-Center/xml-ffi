@@ -6,7 +6,7 @@
  * @file
  * 
  */
-package xml4cj
+package xml_ffi
 
 
 foreign {
