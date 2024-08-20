@@ -10,7 +10,7 @@
   compile-option = "-O2 -Woff unused"
   description = "xml4cj is XML text processing"
   link-option = ""
-  name = "xml4cj"
+  name = "xml_ffi"
   output-type = "dynamic"
   src-dir = "src"
   target-dir = ""

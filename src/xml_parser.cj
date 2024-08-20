@@ -6,7 +6,7 @@
  * @file
  * The file declars the XmlParser class.
  */
-package xml4cj
+package xml_ffi
 
 import std.fs.*
 import std.os.posix.*
