@@ -1,7 +1,7 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from xml4cj import xml4cj.*
+import xml_ffi.*
 
 main() {
     let x: XmlParser = XmlParser()

@@ -1,20 +1,18 @@
 /*
- * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
- * Description:
+ * @Copyright (c) Huawei Technologies Co., Ltd. 2023-2024. All rights reserved.
  */
 
 /**
  * @file
  * The file declars the XmlParser class.
  */
-package xml4cj
+package xml_ffi
 
-from std import io.*
-from std import fs.*
-from std import os.posix.*
-from std import sync.*
-from std import math.*
-from std import collection.*
+import std.fs.*
+import std.os.posix.*
+import std.sync.*
+import std.math.*
+import std.collection.*
 
 var SAXArray = ArrayList<SaxHandler>()
 public class XmlParser {
@@ -23,24 +21,18 @@ public class XmlParser {
     private var isSax = false
     private var sax: SaxHandler = SimpleSaxHandler()
 
-    private var xmlDocPtr: Int64 = 0
-
-    private var xmlNodePtr: Int64 = 0
-
     public init(){}
-
 
     public init(handler: SaxHandler){
         this.isSax = true
         this.sax = handler
     }
 
-
     public func parse(str: String): Option<XmlElement> {
-        if (!str.contains('<')) {
+        if (!str.contains("<")) {
             throw XmlException("xml txt syntax error.")
         }
-        if (str.contains('\0')) {
+        if (str.contains("\0")) {
             throw XmlException("xml txt cannot contain null character.")
         }
         if (str.size > Int64(UInt32.Max)) {
@@ -82,10 +74,10 @@ func checkXmlName(name: String) {
     if (name.isEmpty()) {
         throw XmlException("xml name is not well-formed.")
     }
-    if (name[0] == '-' || name[0] == '.' || name[0] == '\u{00B7}') {
+    if (Rune(name[0]) == r'-' || Rune(name[0]) == r'.' || Rune(name[0]) == r'\u{00B7}') {
         throw XmlException("xml name is not well-formed.")
     }
-    if (name[0] >= '0' && name[0] <= '9') {
+    if (Rune(name[0]) >= r'0' && Rune(name[0]) <= r'9') {
         throw XmlException("xml name is not well-formed.")
     }
 }
@@ -95,10 +87,6 @@ public class XmlElement {
     public var eleName: String
 
     public var eleContent: String
-
-    private var xmlDocPtr: Int64 = 0
-
-    private var xmlNodePtr: Int64 = 0
 
     private var eleIsClosed: Bool
 
@@ -110,15 +98,6 @@ public class XmlElement {
         this(name, content)
         this.eleChildrenElements = checkXmlElement(xmlDocPtr, xmlNodePtr)
         this.eleAttributes = checkXmlAttribute(xmlNodePtr)
-        this.xmlDocPtr = xmlDocPtr
-        this.xmlNodePtr = xmlNodePtr
-    }
-
-    ~init() {
-        unsafe { 
-            DocPtr_free(xmlDocPtr) 
-            NodePtr_free(xmlNodePtr) 
-        }
     }
 
     public init(name: String, content: String){
@@ -264,8 +243,9 @@ public class XmlElement {
     public func toXmlString(): String {
         let tabStop = 4
         var xmlStr = toXmlString(this, tabStop, 0)
-        xmlStr.removeLast()
-        return xmlStr.toString()
+        let buffers = xmlStr.toString()
+        var datas = buffers.lastIndexOf("\n").getOrThrow()
+        return buffers[0..datas]
     }
 
 }
@@ -462,7 +442,7 @@ func end_ele_callback(ud: CPointer<Unit>, name: CString): Unit {
 @C
 func characters_callback(ud: CPointer<Unit>, name: CString, len: UInt32): Unit {
     (ud)
-    let src = name.toString().toUtf8Array()
+    let src = name.toString().toArray()
     let sc = String.fromUtf8(src.slice(0,Int64(len)))
     SAXArray[0].characters(sc)
 }

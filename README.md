@@ -1,11 +1,11 @@
 <div align="center">
-<h1>xml4cj</h1>
+<h1>xml-ffi</h1>
 </div>
 
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.39.8-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.53.4-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90.8%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -13,7 +13,6 @@
 ## 介绍
 
 一个标准的 XML 文本处理的工具。    
-参考地址: https://github.com/GNOME/libxml2 版本2.9.14
 
 ### 特性
 
@@ -48,7 +47,6 @@
 │    ├── LLT
 │    └── UT
 ├── CHANGELOG.md
-├── gitee_gate.cfg
 ├── LICENSE.txt
 ├── module.json
 ├── README.md
@@ -67,8 +65,6 @@
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/> 使用说明
 
 ### 编译
-
-前提：参考 https://github.com/GNOME/libxml2 官网安装 `libxml2`，版本为 `V2.9.14`。
 
 #### libxml2 编译
 
@@ -94,13 +90,6 @@
       make
       ```
 
-   1.3. ohos
-
-      ```shell
-      cmake ./ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr1/ohos/native/llvm/bin/clang -DCMAKE_C_FLAGS="--sysroot=/usr1/ohos/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSROOT=/usr1/ohos/native/sysroot -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
-      make
-      ```
-
 2. winows 编译
 
    下载msys2和mingw64
@@ -122,8 +111,22 @@
     "D:\cmake-3.26.3-windows-x86_64\bin\cmake" ./ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
     make
     ```
+   
+3. ohos 编译
 
-#### xml4cj编译
+   用mingw64进入libxml2目录，执行下面语句
+    
+   xx/xx/native 为ohos编译工具链目录
+
+    ```shell
+    var=`awk '/set_target_properties.*/{print NR;exit;}' CMakeLists.txt` && sed -i ''"$var"',+10{/VERSION/d}' CMakeLists.txt
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="xx/xx/native/llvm/bin/clang.exe" -DCMAKE_C_FLAGS="--sysroot=xx/xx/native/sysroot --target=aarch64-linux-ohos" -DCMAKE_SYSTEM_NAME=linux -DCMAKE_SYSTEM_PROCESSOR=aarch64  -G "MinGW Makefiles" -DCMAKE_STRIP="xx/xx/native/llvm/bin/llvm-strip.exe" -DCMAKE_MAKE_PROGRAM="xx/msys2/mingw64/bin/make.exe" -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
+    make
+    ```
+
+#### xml-ffi编译
 
 
 1. linux x86_64 编译
@@ -164,7 +167,7 @@
 
 ```cangjie
 
-from xml4cj import xml4cj.*
+import xml_ffi.*
 
 main() {
     let x: XmlParser = XmlParser()
@@ -188,8 +191,8 @@ myxml
 
 ```cangjie
 
-from xml4cj import xml4cj.*
-from std import collection.*
+import xml_ffi.*
+import std.collection.*
 
 let latestMovie = """
 <collection shelf="New Arrivals">
@@ -276,6 +279,9 @@ Score: 6.5
 Year: 2024-4
 End Parsing.
 ```
+## 开源协议
+
+本项目基于 [个人：(C) 1998-2012 Daniel Veillard](./LICENSE) ，请自由的享受和参与开源。
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/> 参与贡献
 

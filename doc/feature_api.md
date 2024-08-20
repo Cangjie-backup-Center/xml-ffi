@@ -1,4 +1,4 @@
-## xml4cj 库
+## xml_ffi 库
 
 ### 介绍
 该库提供基于标准的 XML 文本处理,目前支持两种模式：文档对象模型（DOM）模式和 XML 简单 API（SAX）模式，暂不支持外部实体功能
@@ -174,7 +174,7 @@ class XmlException
 #### 1.2 示例
 
 ```cangjie
-from xml4cj import xml4cj.*
+import xml_ffi.*
 
 main() {
     let x: XmlParser = XmlParser()
@@ -278,7 +278,7 @@ interface SaxHandler
 #### 2.2 示例
 
 ```cangjie
-from xml4cj import xml4cj.*
+import xml_ffi.*
 from std import collection.*
 
 let latestMovie = """

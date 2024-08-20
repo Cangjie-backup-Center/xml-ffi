@@ -1,8 +1,8 @@
-// 3rd_party_lib:xml4cj/build/xml4cj
-//3rd_party_lib_ohos:xml4cj\build\aarch64-linux-ohos\xml4cj
-from xml4cj import xml4cj.*
-from std import unittest.*
-from std import collection.*
+// 3rd_party_lib:xml-ffi/target/release/xml_ffi
+//3rd_party_lib_ohos:xml-ffi\target\aarch64-linux-ohos\release\xml_ffi
+import xml_ffi.*
+import std.unittest.*
+import std.collection.*
 
 //包含有标签
 @Test
@@ -105,7 +105,7 @@ public class xml4cjparserTest {
         var xmlparser = XmlParser(saxxml)
         var str =
             ##"<?xml version="1.0" encoding="utf-8"?><showList color="blue"><message>starting</message><movie><name>Rain</name><date>2020-01-02</date></movie><file color="blue2" size="180"><name>Rain2</name><date>2020-01-03</date></file><!-- This is a comment --><message>if salary &lt; 1000 then</message><message>ending</message></showList>"##
-        var xmlelement = xmlparser.parse(str)
+        xmlparser.parse(str)
         var a = 0
         if (saxxml.m != 1 || saxxml.n != 1 || saxxml.g != 10 || saxxml.h != 10 || saxxml.k != 9) {
             a = a + 1
@@ -120,7 +120,7 @@ public class xml4cjparserTest {
         var str = ##"<?xml version="1.0"?>
 <!DOCTYPE greeting SYSTEM "hello.dtd">
 <greeting>Hello, world!</greeting> "##
-        var xmlelement = xmlparser.parse(str)
+        xmlparser.parse(str)
         var a = 0
         if (saxxml.m != 1 || saxxml.n != 1 || saxxml.g != 1 || saxxml.h != 1 || saxxml.k != 1) {
             a = a + 1
@@ -138,7 +138,7 @@ public class xml4cjparserTest {
 <to>Tove</to>
 <from>Jani</from>
 </note> "##
-        var xmlelement = xmlparser.parse(str)
+        xmlparser.parse(str)
         var a = 0
         if (saxxml.m != 1 || saxxml.n != 1 || saxxml.g != 3 || saxxml.h != 3 || saxxml.k != 5) {
             a = a + 1
@@ -156,7 +156,7 @@ public class xml4cjparserTest {
   <name> </name>
   <Name>https:111111</Name>
 </site>"##
-        var xmlelement = xmlparser.parse(str)
+        xmlparser.parse(str)
         var a = 0
         if (saxxml.m != 1 || saxxml.n != 1 || saxxml.g != 3 || saxxml.h != 3 || saxxml.k != 5) {
             a = a + 1
@@ -177,13 +177,13 @@ class A <: SaxHandler {
     public func endDocument(): Unit {
         n += 1
     }
-    public func startElement(name: String, attrs: ArrayList<XmlAttr>): Unit {
+    public func startElement(_: String, _: ArrayList<XmlAttr>): Unit {
         g += 1
     }
-    public func endElement(name: String): Unit {
+    public func endElement(_: String): Unit {
         h += 1
     }
-    public func characters(content: String): Unit {
+    public func characters(_: String): Unit {
         k += 1
     }
 }

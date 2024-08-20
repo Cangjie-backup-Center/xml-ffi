@@ -1,8 +1,8 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from xml4cj import xml4cj.*
-from std import collection.*
+import xml_ffi.*
+import std.collection.*
 
 let latestMovie = """
 <collection shelf="New Arrivals">

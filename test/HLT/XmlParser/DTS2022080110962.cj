@@ -1,8 +1,8 @@
-// 3rd_party_lib:xml4cj/build/xml4cj
-//3rd_party_lib_ohos:xml4cj\build\aarch64-linux-ohos\xml4cj
-from xml4cj import xml4cj.*
-from std import unittest.*
-from std import collection.*
+// 3rd_party_lib:xml-ffi/target/release/xml_ffi
+//3rd_party_lib_ohos:xml-ffi\target\aarch64-linux-ohos\release\xml_ffi
+import xml_ffi.*
+import std.unittest.*
+import std.collection.*
 
 @Test
 public class xml4cjparserTest {
@@ -11,5 +11,6 @@ public class xml4cjparserTest {
         var xmlparser = XmlParser()
         var str = ##"<sode/>"##
         var xmlelement = xmlparser.parse(str).getOrThrow()
+        @Assert(xmlelement.content, "")
     }
 }
