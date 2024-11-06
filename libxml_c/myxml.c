@@ -70,6 +70,16 @@ int xmlNodePtr_isNull(const long long ptr)
     return 0;
 }
 
+int xmlDocPtr_isNull(const long long ptr)
+{
+    xmlDocPtr doc;
+    doc = (xmlDocPtr) ptr;
+    if (doc == NULL) {
+        return 1;
+    }
+    return 0;
+}
+
 
 int xmlAttrPtr_isNull(const long long ptr)
 {

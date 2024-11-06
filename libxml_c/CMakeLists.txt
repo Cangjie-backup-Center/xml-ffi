@@ -24,8 +24,6 @@ include_directories("./include")
 
 add_library(myxml2 SHARED ${SRC})
 
-target_link_libraries(myxml2 native_drawing)
-
 #only in Release type use strip
 if(CMAKE_BUILD_TYPE)
     if(${CMAKE_BUILD_TYPE} STREQUAL "Release")

@@ -23,6 +23,8 @@ foreign {
 
     func xmlAttrPtr_isNull(ptr: Int64): Int32
 
+    func xmlDocPtr_isNull(ptr: Int64): Int32
+
     func xmlAttrPtr_free(ptr: Int64): Unit
 
     func query_ChildrenNodes(ptr: Int64): Int64
@@ -71,6 +73,16 @@ public func parserNodePtr_isNull(str: Int64): Bool {
 
 public func parserAttrPtr_isNull(str: Int64): Bool {
     var ret = unsafe { xmlAttrPtr_isNull(str) }
+    if (ret == 1) {
+        return true
+    }else {
+        return false
+    }
+    
+}
+
+public func parserDocPtr_isNull(str: Int64): Bool {
+    var ret = unsafe { xmlDocPtr_isNull(str) }
     if (ret == 1) {
         return true
     }else {

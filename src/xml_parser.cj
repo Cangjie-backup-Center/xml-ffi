@@ -9,7 +9,7 @@
 package xml_ffi
 
 import std.fs.*
-import std.os.posix.*
+import std.posix.*
 import std.sync.*
 import std.math.*
 import std.collection.*
@@ -62,7 +62,13 @@ public class XmlParser {
             return Option<XmlElement>.None
         }
         var params_str =  parserString_DocPtr(str)
+        if (parserDocPtr_isNull(params_str)) {
+            throw XmlException("xml parse failed")
+        }
         var node_ptr =  getRoot_NodePtr(params_str)
+        if (parserNodePtr_isNull(node_ptr)) {
+            throw XmlException("xml parse failed")
+        }
         var node_names = getxmlNode_name(node_ptr)
         var content = getxmlNode_content(params_str,node_ptr)
         return XmlElement(node_names, content, params_str, node_ptr)
