@@ -19,12 +19,6 @@ foreign {
 
     func query_Root_NodePtr(ptr: Int64): Int64
 
-    func xmlNodePtr_isNull(ptr: Int64): Int32
-
-    func xmlAttrPtr_isNull(ptr: Int64): Int32
-
-    func xmlDocPtr_isNull(ptr: Int64): Int32
-
     func xmlAttrPtr_free(ptr: Int64): Unit
 
     func query_ChildrenNodes(ptr: Int64): Int64
@@ -41,11 +35,28 @@ foreign {
 }
 
 public func getxmlNode_name(Nodestr: Int64): String {
-    return unsafe { query_xmlNode_name(Nodestr).toString() }
+    var ret =  unsafe { 
+            let cstr = query_xmlNode_name(Nodestr)
+            if (cstr.isNull()) {
+                ""
+            } else {
+                let src = cstr.toString()
+                src
+            }
+        }
+    return ret
 }
 
 public func getxmlNode_content(DocPtr: Int64 , Nodestr: Int64): String {
-    var ret = unsafe { query_xmlNode_content(DocPtr, Nodestr).toString() }
+    var ret = unsafe { 
+        let cstr = query_xmlNode_content(DocPtr, Nodestr)
+            if (cstr.isNull()) {
+                ""
+            } else {
+                let src = cstr.toString()
+                src
+            }
+        }
     return ret
 }
 
@@ -61,47 +72,34 @@ public func getRoot_NodePtr(str: Int64): Int64 {
     return ret
 }
 
-public func parserNodePtr_isNull(str: Int64): Bool {
-    var ret = unsafe { xmlNodePtr_isNull(str) }
-    if (ret == 1) {
-        return true
-    }else {
-        return false
-    }
-    
-}
-
-public func parserAttrPtr_isNull(str: Int64): Bool {
-    var ret = unsafe { xmlAttrPtr_isNull(str) }
-    if (ret == 1) {
-        return true
-    }else {
-        return false
-    }
-    
-}
-
-public func parserDocPtr_isNull(str: Int64): Bool {
-    var ret = unsafe { xmlDocPtr_isNull(str) }
-    if (ret == 1) {
-        return true
-    }else {
-        return false
-    }
-    
-}
-
 public func AttrPtr_free(str: Int64): Unit {
     unsafe { xmlAttrPtr_free(str) }
 }
 
 
 public func getPropattribute_name(AttrPtr: Int64): String {
-    return unsafe { query_Propattribute_name(AttrPtr).toString() }
+    var ret =  unsafe { 
+        let cstr = query_Propattribute_name(AttrPtr)
+        if (cstr.isNull()) {
+            ""
+        } else {
+            let src = cstr.toString()
+            src
+        }
+    }
+    return ret
 }
 
 public func getPropattribute_content(Nodestr: Int64 , AttrPtr: Int64): String {
-    var ret = unsafe { query_Propattribute_contxt(Nodestr, AttrPtr).toString() }
+    var ret = unsafe { 
+        let cstr = query_Propattribute_contxt(Nodestr, AttrPtr) 
+            if (cstr.isNull()) {
+                ""
+            } else {
+                let src = cstr.toString()
+                src
+            }
+        }
     return ret
 }
 
