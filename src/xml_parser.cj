@@ -9,7 +9,7 @@
 package xml_ffi
 
 import std.fs.*
-import std.posix.*
+import std.os.posix.*
 import std.sync.*
 import std.math.*
 import std.collection.*
