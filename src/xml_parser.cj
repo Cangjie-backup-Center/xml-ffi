@@ -62,11 +62,11 @@ public class XmlParser {
             return Option<XmlElement>.None
         }
         var params_str =  parserString_DocPtr(str)
-        if (parserDocPtr_isNull(params_str)) {
+        if (params_str == 0) {
             throw XmlException("xml parse failed")
         }
         var node_ptr =  getRoot_NodePtr(params_str)
-        if (parserNodePtr_isNull(node_ptr)) {
+        if (node_ptr == 0) {
             throw XmlException("xml parse failed")
         }
         var node_names = getxmlNode_name(node_ptr)
@@ -259,7 +259,7 @@ public class XmlElement {
 func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement> {
     var arrayElement: ArrayList<XmlElement> = ArrayList<XmlElement>()
     var childnode = getChildrenNodes(xmlNodePtr)
-    if(parserNodePtr_isNull(childnode)){
+    if(childnode == 0){
         return arrayElement
     }
     var node_names = getxmlNode_name(childnode)
@@ -270,7 +270,7 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
 
     while(true) {
         var nextnode = getnextNode(childnode)
-        if (parserNodePtr_isNull(nextnode)) {
+        if (nextnode == 0) {
              break
         }
         var nextnode_names = getxmlNode_name(nextnode)
@@ -286,7 +286,7 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
 func checkXmlAttribute(xmlNodePtr: Int64): ArrayList<XmlAttr> {
     var arrayAttr: ArrayList<XmlAttr> = ArrayList<XmlAttr>()
     var childpro = getChildrenProps(xmlNodePtr)
-    if(parserAttrPtr_isNull(childpro)){
+    if(childpro == 0){
         AttrPtr_free(childpro)
         return arrayAttr
     }
@@ -296,7 +296,7 @@ func checkXmlAttribute(xmlNodePtr: Int64): ArrayList<XmlAttr> {
     var nextpro: Int64 = 0
     while(true) {
         var nextpro = getnextProp(childpro)
-        if (parserAttrPtr_isNull(nextpro)) {
+        if (nextpro == 0) {
             break
         }
         var Attrpronames = getPropattribute_name(nextpro)
