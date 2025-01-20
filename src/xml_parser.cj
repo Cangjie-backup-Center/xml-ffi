@@ -43,7 +43,7 @@ public class XmlParser {
         }
         if (isSax) {
             synchronized (mtx) {
-                SAXArray.append(sax)
+                SAXArray.add(sax)
                 
                 var s = unsafe { LibC.mallocCString(str) }
                 try {
@@ -56,7 +56,7 @@ public class XmlParser {
                         }
                 }finally {
                     unsafe { LibC.free(s) }
-                    SAXArray.remove(0)
+                    SAXArray.remove(at:0)
                 }
             }
             return Option<XmlElement>.None
@@ -172,8 +172,8 @@ public class XmlElement {
                     throw XmlException(
                         "an attribute name must not appear more than once in the same start-tag or empty-element tag.")
                 }
-                eleAttributes.append(XmlAttr(a.name, a.content))
-                attrNameSet.put(a.name)
+                eleAttributes.add(XmlAttr(a.name, a.content))
+                attrNameSet.add(a.name)
             }
         }
     }    
@@ -265,7 +265,7 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
     var node_names = getxmlNode_name(childnode)
     if (!node_names.isEmpty()) {
         var content = getxmlNode_content(xmlDocPtr,childnode)
-        arrayElement.append(XmlElement(node_names, content, xmlDocPtr, childnode))
+        arrayElement.add(XmlElement(node_names, content, xmlDocPtr, childnode))
     }
 
     while(true) {
@@ -276,7 +276,7 @@ func checkXmlElement(xmlDocPtr: Int64, xmlNodePtr: Int64): ArrayList<XmlElement>
         var nextnode_names = getxmlNode_name(nextnode)
         if (!nextnode_names.isEmpty()) {
             var nextcontent = getxmlNode_content(xmlDocPtr,nextnode)
-            arrayElement.append(XmlElement(nextnode_names, nextcontent, xmlDocPtr, nextnode))
+            arrayElement.add(XmlElement(nextnode_names, nextcontent, xmlDocPtr, nextnode))
         }
         childnode = nextnode
     }
@@ -292,7 +292,7 @@ func checkXmlAttribute(xmlNodePtr: Int64): ArrayList<XmlAttr> {
     }
     var Attrnames = getPropattribute_name(childpro)
     var content = getPropattribute_content(xmlNodePtr,childpro)
-    arrayAttr.append(XmlAttr(Attrnames, content))
+    arrayAttr.add(XmlAttr(Attrnames, content))
     var nextpro: Int64 = 0
     while(true) {
         var nextpro = getnextProp(childpro)
@@ -301,7 +301,7 @@ func checkXmlAttribute(xmlNodePtr: Int64): ArrayList<XmlAttr> {
         }
         var Attrpronames = getPropattribute_name(nextpro)
         var contentpro = getPropattribute_content(xmlNodePtr,nextpro)
-        arrayAttr.append(XmlAttr(Attrpronames, contentpro))
+        arrayAttr.add(XmlAttr(Attrpronames, contentpro))
         childpro = nextpro
     }
 
@@ -414,7 +414,7 @@ func saxGetAttrs(attrs: CPointer<CPointer<UInt8>>): ArrayList<XmlAttr> {
                 return attrList
             }
             var content = CString(attrs.read(i * 2 + 1)).toString()
-            attrList.append(XmlAttr(name.toString(), content.toString()))
+            attrList.add(XmlAttr(name.toString(), content.toString()))
         }
         i++
     }

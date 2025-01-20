@@ -49,7 +49,7 @@ long long query_DocPtr(const char *file_name)
     xmlDocPtr doc;
     doc = xmlParseMemory(file_name, strlen(file_name));
     if (doc == NULL) {
-        return NULL;
+        return 0;
     }
     return (long long)(doc);
 }
@@ -60,7 +60,7 @@ long long query_Root_NodePtr(const long long ptr)
     xmlNodePtr cur;
     doc = (xmlDocPtr) ptr;
     if (doc == NULL) {
-        return NULL;
+        return 0;
     }
     cur = xmlDocGetRootElement(doc);
     return (long long)(cur);
@@ -82,7 +82,7 @@ long long query_ChildrenNodes(const long long ptr)
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     if (cur == NULL) {
-        return NULL;
+        return 0;
     }
     cur = cur -> xmlChildrenNode;
     return (long long)(cur);
@@ -93,7 +93,7 @@ long long query_nextNode(const long long ptr)
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     if (cur == NULL) {
-        return NULL;
+        return 0;
     }
     cur = cur -> next;
     return (long long)(cur);
@@ -104,7 +104,7 @@ long long query_ChildrenProps(const long long ptr)
     xmlNodePtr cur;
     cur = (xmlNodePtr) ptr;
     if (cur == NULL) {
-        return NULL;
+        return 0;
     }
     xmlAttrPtr attribute = cur -> properties;
     return (long long)(attribute);
@@ -115,7 +115,7 @@ long long query_nextProp(const long long ptr)
     xmlAttrPtr attribute;
     attribute = (xmlAttrPtr) ptr;
     if (attribute == NULL) {
-        return NULL;
+        return 0;
     }
     attribute = attribute -> next;
     return (long long)(attribute);
