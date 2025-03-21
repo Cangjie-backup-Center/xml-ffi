@@ -6,7 +6,7 @@
   xml2 = {path = "./lib/"}
 
 [package]
-  cjc-version = "0.58.3"
+  cjc-version = "0.59.6"
   compile-option = "-O2 -Woff unused"
   description = "xml4cj is XML text processing"
   link-option = ""
